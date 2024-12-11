@@ -84,6 +84,54 @@ Pagina unei cărți
 
 Pentru a adăuga o recenzie utilizatorul trebuie să acceseze link-ul `Add a review!` și trebuie sa adauge un comentariu de 15 caractere minimun pentru ca review-ul să fie postat și salvat.Aceasta ajută la prevenirea postării de recenzii foarte scurte, care nu oferă informații valoroase altor utilizatori.
 
+#### Fragment de cod :
+
+1.
+
+```php
+public function store(Request $request, Book $book)
+    {
+        $data = $request->validate([
+            'review' => 'required|min:15',
+            'rating' => 'required|min:1|max:5|integer'
+        ]);
+
+        $book->reviews()->create($data);
+
+        // Clear the cache for the book
+        cache()->forget('book:' . $book->id);
+
+        return redirect()->route('books.show', $book);
+    }
+```
+
+2.
+
+```php
+@extends('layouts.app')
+
+@section('content')
+  <h1 class="mb-10 text-2xl">Add Review for {{ $book->title }}</h1>
+
+  <form method="POST" action="{{ route('books.reviews.store', $book) }}">
+    @csrf
+    <label for="review">Review</label>
+    <textarea name="review" id="review" required class="input mb-4"></textarea>
+
+    <label for="rating">Rating</label>
+
+    <select name="rating" id="rating" class="input mb-4" required>
+      <option value="">Select a Rating</option>
+      @for ($i = 1; $i <= 5; $i++)
+        <option value="{{ $i }}">{{ $i }}</option>
+      @endfor
+    </select>
+
+    <button type="submit" class="btn">Add Review</button>
+  </form>
+@endsection
+```
+
 Formularul de recenzie și lista de recenzii.
 
 ![Formularul de recenzie1](image-2.png)
@@ -96,4 +144,31 @@ Dupa apasarea butonului Add Review utilizatorul este redirecționat înapoi la p
 
 Review-ul este afișat pe pagina cărții impreună cu ratig-ul si data la care a fost creat.
 
-jvrighiwrhtvibhy
+N.B : În Laravel 11, folderul `middleware` nu mai este inclus implicit, deoarece framework-ul a fost optimizat pentru a gestiona middleware-urile și configurările direct în fișierele de provider, cum ar fi `AppServiceProvider`, aici și am inclus:
+
+```php
+public function boot(): void
+    {
+        RateLimiter::for('reviews', function (Request $request) {
+            return Limit::perHour(5)->by(
+                $request->user()?->id ?: $request->ip() // Check user ID or fallback to IP
+            );
+        });
+    }
+```
+
+Pentru limitarea recenziilor la 5 pe oră pe utilizator (rate limiting), pentru a preveni abuzurile și spam-ul, asigurându-se că recenziile sunt postate într-un ritm natural și relevant. Această abordare protejează aplicația de atacuri automate.
+
+![5 reviews 1 book](image-5.png)
+
+Dacă mai încerc să mai adaug un review :
+
+![429](image-6.png)
+
+## **Lista surselor utilizate**
+
+-   [Documentația Laravel 11](https://laravel.com/docs)
+-   [Documentația PHP](https://www.php.net/docs.php)
+-   [Documentația Tailwind CSS](https://tailwindcss.com/docs)
+-   [Documentația MySQL](https://dev.mysql.com/doc/)
+-   [Tutoriale și ghiduri StackOverflow](https://stackoverflow.com)
