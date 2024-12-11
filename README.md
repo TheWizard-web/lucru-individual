@@ -161,7 +161,7 @@ Pentru limitarea recenziilor la 5 pe oră pe utilizator (rate limiting), pentru 
 
 ![5 reviews 1 book](image-5.png)
 
-Dacă se încercă să mai adauge un review :
+Dacă se încercă să se mai adauge un review :
 
 ![429](image-6.png)
 
