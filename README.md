@@ -2,7 +2,7 @@
 
 ## **Prezentare generală**
 
-Am dezvoltat o mică aplicație concepută pentru a gestiona o colecție de cărți și recenziile acestora. Oferă utilizatorilor funcționalități pentru a vizualiza și filtra cărți, precum și pentru a crea și adăuga recenzii pentru oricare dintre cărțile listate. Aplicația demonstrează implementarea unei relații unu-la-multe între cărți și recenziile lor, folosind funcții moderne Laravel, cum ar fi componentele Blade, interogarea în cache și limitarea ratei.
+Am dezvoltat o mică aplicație concepută pentru a gestiona o colecție de cărți și recenziile acestora. Oferă utilizatorilor funcționalități pentru a vizualiza și filtra cărți dupa rating, precum și pentru a crea și adăuga recenzii pentru oricare dintre cărțile listate. Aplicația demonstrează implementarea unei relații unu-la-multe între cărți și recenziile lor, folosind funcții moderne Laravel, cum ar fi componentele Blade, interogarea în cache și limitarea ratei.
 
 Aplicația este dezvoltată utilizând **Laravel 11** ca backend pentru gestionarea logicii aplicației și interacțiunea cu baza de date, iar **Blade** este utilizat ca frontend pentru generarea paginilor dinamice. Această arhitectură permite separarea clară a responsabilităților între backend și frontend, asigurând în același timp un flux de lucru eficient și modern.
 
@@ -63,4 +63,35 @@ Pentru a instala si porni proiectul trebuie să se cloneze proiectul și să se 
 
 Pagina principală afișează toate cărțile din baza de date, organizate după popularitate (luna trecuta , ultimele 6 luni), dupa review-uri (luna trecuta , ultimele 6 luni), titlu sau cele mai recente adăugate.
 
+Lista de cărți afișată pe pagina principală
+
 ![Lista de cărți afișată pe pagina principală](image.png)
+
+#### Fragment de cod Blade:
+
+```php
+@foreach($books as $book)
+    <x-book-card :book="$book" />
+@endforeach
+```
+
+### 1. Detalii carte și recenzii
+
+Pagina fiecărei cărți afișează titlul, autorul, recenziile și rating-ul carții . Utilizatorii autentificați pot adăuga recenzii direct din această pagină.
+
+Pagina unei cărți
+![Pagina unei cărți](image-1.png)
+
+Pentru a adăuga o recenzie utilizatorul trebuie să acceseze link-ul `Add a review!` și trebuie sa adauge un comentariu de 15 caractere minimun pentru ca review-ul să fie postat și salvat.Aceasta ajută la prevenirea postării de recenzii foarte scurte, care nu oferă informații valoroase altor utilizatori.
+
+Formularul de recenzie și lista de recenzii.
+
+![Formularul de recenzie1](image-2.png)
+
+![Formularul de recenzie2](image-3.png)
+
+Dupa apasarea butonului Add Review utilizatorul este redirecționat înapoi la pagina cărții pentru a viziona rating-ul recent adăugat de acesta.
+
+![Review](image-4.png)
+
+Review-ul este afișat pe pagina cărții impreună cu ratig-ul si data la care a fost creat.
