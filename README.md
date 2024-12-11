@@ -56,3 +56,11 @@ Pentru a instala si porni proiectul trebuie să se cloneze proiectul și să se 
 ### Performanță îmbunătățită prin caching:
 
 -   Aplicația utilizează caching pentru a stoca cărțile cele mai populare și cele mai recente recenzii, reducând astfel timpul de încărcare a paginilor și îmbunătățind performanța generală.
+
+## **Exemple de utilizare**
+
+### 1. Lista de cărți
+
+Pagina principală afișează toate cărțile din baza de date, organizate după popularitate (luna trecuta , ultimele 6 luni), dupa review-uri (luna trecuta , ultimele 6 luni), titlu sau cele mai recente adăugate.
+
+![Lista de cărți afișată pe pagina principală](image.png)
