@@ -134,11 +134,11 @@ public function store(Request $request, Book $book)
 
 Formularul de recenzie și lista de recenzii.
 
-![Formularul de recenzie1](image-2.png)
+![Formularul de recenzie1](image-3.png)
 
-![Formularul de recenzie2](image-3.png)
+![Formularul de recenzie2](image-2.png)
 
-Dupa apasarea butonului Add Review utilizatorul este redirecționat înapoi la pagina cărții pentru a viziona rating-ul recent adăugat de acesta.
+Dupa apasarea butonului **Add Review** utilizatorul este redirecționat înapoi la pagina cărții pentru a viziona rating-ul recent adăugat de acesta.
 
 ![Review](image-4.png)
 
@@ -161,7 +161,7 @@ Pentru limitarea recenziilor la 5 pe oră pe utilizator (rate limiting), pentru 
 
 ![5 reviews 1 book](image-5.png)
 
-Dacă mai încerc să mai adaug un review :
+Dacă se încercă să mai adauge un review :
 
 ![429](image-6.png)
 
