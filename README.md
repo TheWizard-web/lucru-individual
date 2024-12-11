@@ -172,3 +172,4 @@ Dacă mai încerc să mai adaug un review :
 -   [Documentația Tailwind CSS](https://tailwindcss.com/docs)
 -   [Documentația MySQL](https://dev.mysql.com/doc/)
 -   [Tutoriale și ghiduri StackOverflow](https://stackoverflow.com)
+    fuehfud
