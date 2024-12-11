@@ -15,7 +15,6 @@ class Book extends Model
      * Define relationship with Review model
      * protected $fillable = ['title', 'author', 'description'];
      */
-    protected $fillable = ['title', 'author', 'description'];
 
     public function reviews()
     {

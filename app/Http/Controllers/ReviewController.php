@@ -21,6 +21,9 @@ class ReviewController extends Controller
 
         $book->reviews()->create($data);
 
+        // Clear the cache for the book
+        cache()->forget('book:' . $book->id);
+
         return redirect()->route('books.show', $book);
     }
 }
