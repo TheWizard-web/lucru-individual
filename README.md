@@ -95,3 +95,5 @@ Dupa apasarea butonului Add Review utilizatorul este redirecționat înapoi la p
 ![Review](image-4.png)
 
 Review-ul este afișat pe pagina cărții impreună cu ratig-ul si data la care a fost creat.
+
+jvrighiwrhtvibhy
